@@ -1,0 +1,1 @@
+export const FETCH_DESTINY_DATA = 'FETCH_DESTINY_DATA';
