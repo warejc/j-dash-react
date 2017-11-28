@@ -1,10 +1,14 @@
-import { FETCH_DESTINY_DATA } from '../actions/types';
+import {
+    FETCH_DESTINY_DATA,
+    SET_CONFIG
+} from '../actions/types';
 
 import { Map } from 'immutable';
 
 export const initialState = Map({
     data: {},
-    isFetchingDestinyData: false
+    isFetchingDestinyData: false,
+    config: {'DESTINY_API_KEY': 'abcd'}
 });
 
 export default function(state = initialState, action) {
@@ -16,10 +20,16 @@ export default function(state = initialState, action) {
             return state.set('isFetchingDestinyData', false);
         case `${FETCH_DESTINY_DATA}_SUCCESS`:
             return state.merge({
-                data: payloadData,
+                data: payloadData.Response.data,
                 isFetchingDestinyData: false
+            });
+        case `${SET_CONFIG}`:
+            return state.merge({
+                config: action.payload
             });
         default:
             return state;
+
+
     }
 }

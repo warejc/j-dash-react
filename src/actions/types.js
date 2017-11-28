@@ -1,1 +1,2 @@
 export const FETCH_DESTINY_DATA = 'FETCH_DESTINY_DATA';
+export const SET_CONFIG = 'SET_CONFIG';

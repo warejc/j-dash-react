@@ -1,13 +1,23 @@
-import { FETCH_DESTINY_DATA } from './types';
-import axios from './axios';
+import { FETCH_DESTINY_DATA, SET_CONFIG } from './types';
+import axios from 'axios';
 
-
-export function fetchDestinyData() {
-    const apiKey = 'somereallylongstringofcharacters';
+export function fetchDestinyData(key) {
     const config = {
-        'headers': {"X-API-Key": apiKey}
+        'headers': {"X-API-Key": key}
     };
 
-    urlString = `https://www.bungie.net/PC/Destiny/Manifest/InventoryItem/1274330687/`
-    const request = axios.get(urlString, config)
+    const urlString = `https://www.bungie.net/Platform`;
+    const request = axios.get(urlString, config);
+
+    return {
+        type: FETCH_DESTINY_DATA,
+        payload: request
+    };
+}
+
+export function setConfig(config) {
+    return {
+        type: SET_CONFIG,
+        payload: config
+    };
 }
