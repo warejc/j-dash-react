@@ -1,6 +1,6 @@
 import { FETCH_DESTINY_DATA } from '../actions/types';
 
-import {List, Map} from 'immutable';
+import { Map } from 'immutable';
 
 export const initialState = Map({
     data: {},
@@ -8,6 +8,7 @@ export const initialState = Map({
 });
 
 export default function(state = initialState, action) {
+    const { data: payloadData } = action.payload || {};
     switch(action.type) {
         case `${FETCH_DESTINY_DATA}_REQUEST`:
             return state.set('isFetchingDestinyData', true);
@@ -18,5 +19,7 @@ export default function(state = initialState, action) {
                 data: payloadData,
                 isFetchingDestinyData: false
             });
+        default:
+            return state;
     }
 }
